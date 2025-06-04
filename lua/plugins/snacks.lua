@@ -15,7 +15,11 @@ return {
       explorer = { enabled = true },
       image = { enabled = true },
       indent = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        hidden = true,
+        ignored = true,
+      },
       -- lazygit = { enabled = true },
       notifier = { enables = true },
       notify = { enabled = true },
