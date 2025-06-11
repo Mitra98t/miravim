@@ -1,2 +1,4 @@
 .DS_Store
 lazy-lock.json
+
+./lua/core/colorscheme_percist.lua
