@@ -1,4 +1,4 @@
 return {
-  -- "github/copilot.vim",
-  -- priority = 1000
+  "github/copilot.vim",
+  priority = 1000
 }
