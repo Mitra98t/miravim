@@ -30,7 +30,7 @@ return {
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     return {
       ensure_installed = {
-        "rust_analyzer"
+        "rust_analyzer",
       },
       automatic_installation = false,
       automatic_enable = {
