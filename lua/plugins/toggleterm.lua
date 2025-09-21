@@ -4,7 +4,9 @@ return {
     version = "*",
     config = function()
       local toggleterm = require("toggleterm")
-      toggleterm.setup({})
+      toggleterm.setup({
+        shade_terminals = false,
+      })
       local Terminal = require("toggleterm.terminal").Terminal
 
       local floating = Terminal:new(
@@ -76,6 +78,35 @@ return {
         lazygit:toggle()
       end
 
+      local codex = Terminal:new({
+        cmd = "codex",
+        dir = "git_dir",
+        direction = "vertical",
+        -- function to run on opening the terminal
+        on_open = function(term)
+          vim.cmd("startinsert!")
+          local target_width = math.floor(vim.o.columns * 0.40)
+          if vim.api.nvim_win_is_valid(term.window) then
+            vim.api.nvim_win_set_width(term.window, target_width)
+          end
+          vim.api.nvim_buf_set_keymap(
+            term.bufnr,
+            "n",
+            "q",
+            "<cmd>close<CR>",
+            { noremap = true, silent = true }
+          )
+        end,
+        -- function to run on closing the terminal
+        on_close = function(term)
+          vim.cmd("startinsert!")
+        end,
+      })
+
+      function _codex_toggle()
+        codex:toggle()
+      end
+
       local wk = require("which-key")
 
       wk.add({
@@ -84,6 +115,12 @@ return {
         { "<leader>tf", "<cmd>lua _floating_toggle()<cr>", desc = "Open floating terminal" },
         { "<leader>tg", "<cmd>lua _lazygit_toggle()<cr>",  desc = "Open lazygit" },
         { "<leader>tb", "<cmd>lua _btm_toggle()<cr>",      desc = "Open bottom" },
+        { "<leader>tc", "<cmd>lua _codex_toggle()<cr>",    desc = "Open bottom" },
+        {
+          mode = { "t" },
+          { "<C-w>", [[<C-\><C-n><C-w>]], desc = "Enter normal mode" },
+          { "<esc>", [[<C-\><C-n>]],      desc = "Enter normal mode" }
+        }
       })
     end,
   },

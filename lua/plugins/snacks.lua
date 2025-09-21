@@ -21,7 +21,7 @@ return {
         ignored = true,
       },
       -- lazygit = { enabled = true },
-      notifier = { enables = true },
+      notifier = { enabled = true },
       notify = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
