@@ -175,6 +175,7 @@ return {
       { "<leader>fq",       function() Snacks.picker.registers() end,          desc = "Find Registers" },
       { "<leader>fn",       function() Snacks.picker.notifications() end,      desc = "Find Notification History" },
       { "<leader>fp",       function() Snacks.picker.projects() end,           desc = "Find Projects" },
+      { "<leader>fg",       function() Snacks.picker.git_diff() end,           desc = "Find Git Diff (Hunks)" },
       {
         "<leader>ut",
         function()
