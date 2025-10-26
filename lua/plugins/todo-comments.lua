@@ -1,13 +1,13 @@
 return {
-	"folke/todo-comments.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = { "nvim-lua/plenary.nvim" },
-	config = function()
-		local todo_comments = require("todo-comments")
+  "folke/todo-comments.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    local todo_comments = require("todo-comments")
 
-		-- set keymaps
+    -- set keymaps
 
-    local wk =require("which-key")
+    local wk = require("which-key")
 
     wk.add({
       {
@@ -15,18 +15,25 @@ return {
         function()
           todo_comments.jump_next()
         end,
-        desc="Next todo comment"
+        desc = "Next todo comment"
       },
       {
         "[t",
         function()
           todo_comments.jump_prev()
         end,
-        desc="Prev todo comment"
+        desc = "Prev todo comment"
       }
     })
 
 
-		todo_comments.setup()
-	end,
+    todo_comments.setup({
+      keywords = {
+        MIRA = { icon = "µ ", color = "mira", alt = { "mira" } },
+      },
+      colors = {
+        mira = { "DiagnosticHint", "#95FE37" }
+      }
+    })
+  end,
 }

@@ -23,6 +23,7 @@ return {
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
+        "clangd",
         "eslint_d",
       },
     })

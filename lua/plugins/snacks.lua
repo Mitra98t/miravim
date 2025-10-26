@@ -135,6 +135,11 @@ return {
     local wk = require 'which-key'
     wk.add({
       {
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
+        { "<leader>f",  group = "Find Selected" },
+        { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find Word/Selection" },
+      },
+      {
         "<leader>uz",
         function()
           Snacks.zen()
