@@ -3,6 +3,7 @@ return {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = function()
+			local border = vim.g.floating_border_style or "rounded"
 			local toggleterm = require("toggleterm")
 			toggleterm.setup({
 				shade_terminals = false,
@@ -12,7 +13,7 @@ return {
 			local floating = Terminal:new({
 				direction = "float",
 				float_opts = {
-					border = "curved",
+					border = border,
 				},
 			})
 
@@ -25,7 +26,7 @@ return {
 				dir = "git_dir",
 				direction = "float",
 				float_opts = {
-					border = "curved",
+					border = border,
 				},
 				-- function to run on opening the terminal
 				on_open = function(term)
@@ -53,7 +54,7 @@ return {
 				dir = "git_dir",
 				direction = "float",
 				float_opts = {
-					border = "curved",
+					border = border,
 				},
 				-- function to run on opening the terminal
 				on_open = function(term)
