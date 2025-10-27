@@ -19,6 +19,7 @@ return {
         enabled = true,
         hidden = true,
         ignored = true,
+        exclude = { "docs", "node_modules", ".git" },
       },
       -- lazygit = { enabled = true },
       notifier = { enabled = true },
