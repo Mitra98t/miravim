@@ -11,5 +11,6 @@ return {
   "rebelot/kanagawa.nvim",
   "Shatur/neovim-ayu",
   "lunarvim/darkplus.nvim",
-  "Mofiqul/dracula.nvim",
+  "eldritch-theme/eldritch.nvim",
+  'AlexvZyl/nordic.nvim',
 }

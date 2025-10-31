@@ -20,6 +20,9 @@ return {
         hidden = true,
         ignored = true,
         exclude = { "docs", "node_modules", ".git" },
+        layout = {
+          preset = "telescope",
+        },
       },
       -- lazygit = { enabled = true },
       notifier = { enabled = true },
@@ -43,7 +46,7 @@ return {
       zen = {
         enabled = true,
         toggles = {
-          dim = true,
+          dim = false,
         },
         ---@type snacks.win.Config
         win = {
@@ -136,11 +139,6 @@ return {
     local wk = require 'which-key'
     wk.add({
       {
-        mode = { "n", "v" }, -- NORMAL and VISUAL mode
-        { "<leader>f",  group = "Find Selected" },
-        { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find Word/Selection" },
-      },
-      {
         "<leader>uz",
         function()
           Snacks.zen()
@@ -158,25 +156,55 @@ return {
         end,
         desc = "Toggle file explorer"
       },
-      { "<leader>f",        group = "Find" },
-      { "<leader><leader>", function() Snacks.picker.smart() end,              desc = "Find Files" },
-      { "<leader>ff",       function() Snacks.picker.resume() end,             desc = "Resume last search" },
-      { "<leader>ft",       function() Snacks.picker.todo_comments() end,      desc = "Find TODOs" },
-      { "<leader>fw",       function() Snacks.picker.grep() end,               desc = "Find Word" },
+      {
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
+        { "<leader>f",  group = "Find Selected" },
+        { "<leader>fw", function() Snacks.picker.grep_word({ layout = { preset = "bottom" } }) end, desc = "Find Word/Selection" },
+      },
+      { "<leader>f",  group = "Find" },
+      {
+        "<leader><leader>",
+        function()
+          Snacks.picker.smart({
+            layout = { preset = "dropdown", }
+          })
+        end,
+        desc = "Find Files"
+      },
+      { "<leader>ff", function() Snacks.picker.resume() end,        desc = "Resume last search" },
+      { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Find TODOs" },
+      {
+        "<leader>fW",
+        function()
+          Snacks.picker.grep({
+            layout = { preset = "bottom", }
+          })
+        end,
+        desc = "Find Word"
+      },
+      {
+        "<leader>fw",
+        function()
+          Snacks.picker.grep_word({
+            layout = { preset = "bottom", }
+          })
+        end,
+        desc = "Find Word under cursor"
+      },
+      { "<leader>fl", function() Snacks.picker.lines() end,              desc = "Find Commands" },
       -- FIX: doed not work as expected
-      { "<leader>fs",       function() Snacks.picker.lsp_symbols() end,        desc = "Find Symbols" },
-      { "<leader>fr",       function() Snacks.picker.lsp_references() end,     desc = "Find references" },
-      { "<leader>fl",       function() Snacks.picker.lines() end,              desc = "Find lines" },
-      { "<leader>fd",       function() Snacks.picker.lsp_declarations() end,   desc = "Find Declarations" },
-      { "gd",               function() Snacks.picker.lsp_declarations() end,   desc = "Find Declarations" },
-      { "<leader>fx",       function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics CWD" },
-      { "<leader>fX",       function() Snacks.picker.diagnostics() end,        desc = "Diagnostics workspace" },
-      { "<leader>fm",       function() Snacks.picker.man() end,                desc = "Find Man Entry" },
-      { "<leader>fb",       function() Snacks.picker.buffers() end,            desc = "Find Buffers" },
-      { "<leader>fq",       function() Snacks.picker.registers() end,          desc = "Find Registers" },
-      { "<leader>fn",       function() Snacks.picker.notifications() end,      desc = "Find Notification History" },
-      { "<leader>fp",       function() Snacks.picker.projects() end,           desc = "Find Projects" },
-      { "<leader>fg",       function() Snacks.picker.git_diff() end,           desc = "Find Git Diff (Hunks)" },
+      { "<leader>fs", function() Snacks.picker.lsp_symbols() end,        desc = "Find Symbols" },
+      { "<leader>fr", function() Snacks.picker.lsp_references() end,     desc = "Find references" },
+      { "<leader>fd", function() Snacks.picker.lsp_declarations() end,   desc = "Find Declarations" },
+      { "gd",         function() Snacks.picker.lsp_declarations() end,   desc = "Find Declarations" },
+      { "<leader>fx", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics CWD" },
+      { "<leader>fX", function() Snacks.picker.diagnostics() end,        desc = "Diagnostics workspace" },
+      { "<leader>fm", function() Snacks.picker.man() end,                desc = "Find Man Entry" },
+      { "<leader>fb", function() Snacks.picker.buffers() end,            desc = "Find Buffers" },
+      { "<leader>fq", function() Snacks.picker.registers() end,          desc = "Find Registers" },
+      { "<leader>fn", function() Snacks.picker.notifications() end,      desc = "Find Notification History" },
+      { "<leader>fp", function() Snacks.picker.projects() end,           desc = "Find Projects" },
+      { "<leader>fg", function() Snacks.picker.git_diff() end,           desc = "Find Git Diff (Hunks)" },
       {
         "<leader>ut",
         function()
@@ -185,6 +213,7 @@ return {
             format = "text",
             preview = "colorscheme",
             preset = "vertical",
+            hidden = { "preview" },
             confirm = function(picker, item)
               picker:close()
               if item then
