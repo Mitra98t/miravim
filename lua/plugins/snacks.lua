@@ -81,6 +81,33 @@ return {
           },
           function()
             local in_git = Snacks.git.get_root() ~= nil
+
+            local function command_succeeds(command)
+              if not command or #command == 0 then
+                return false
+              end
+              if vim.fn.executable(command[1]) ~= 1 then
+                return false
+              end
+              if vim.system then
+                local job = vim.system(command, { text = true })
+                local result = job:wait()
+                return result and result.code == 0
+              end
+              vim.fn.system(command)
+              return vim.v.shell_error == 0
+            end
+
+            local function gh_ready(command)
+              if not in_git then
+                return false
+              end
+              if not command_succeeds({ "gh", "auth", "status" }) then
+                return false
+              end
+              return command_succeeds(command)
+            end
+
             local cmds = {
               {
                 title = "Notifications",
@@ -91,7 +118,9 @@ return {
                 key = "n",
                 icon = " ",
                 height = 5,
-                enabled = true,
+                enabled = function()
+                  return gh_ready({ "gh", "notify", "-s", "-n5" })
+                end,
               },
               {
                 title = "Open Issues",
@@ -102,6 +131,9 @@ return {
                 end,
                 icon = " ",
                 height = 7,
+                enabled = function()
+                  return gh_ready({ "gh", "issue", "list", "-L", "3" })
+                end,
               },
               {
                 icon = " ",
@@ -112,6 +144,9 @@ return {
                   vim.fn.jobstart("gh pr list --web", { detach = true })
                 end,
                 height = 7,
+                enabled = function()
+                  return gh_ready({ "gh", "pr", "list", "-L", "3" })
+                end,
               },
               {
                 icon = " ",
