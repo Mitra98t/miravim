@@ -81,72 +81,49 @@ return {
           },
           function()
             local in_git = Snacks.git.get_root() ~= nil
+            local gh_available = in_git and vim.fn.executable("gh") == 1
 
-            local function command_succeeds(command)
-              if not command or #command == 0 then
-                return false
+            local function gh_cmd(cmd)
+              if not gh_available then
+                return "printf 'gh unavailable\\n'"
               end
-              if vim.fn.executable(command[1]) ~= 1 then
-                return false
-              end
-              if vim.system then
-                local job = vim.system(command, { text = true })
-                local result = job:wait()
-                return result and result.code == 0
-              end
-              vim.fn.system(command)
-              return vim.v.shell_error == 0
-            end
-
-            local function gh_ready(command)
-              if not in_git then
-                return false
-              end
-              if not command_succeeds({ "gh", "auth", "status" }) then
-                return false
-              end
-              return command_succeeds(command)
+              -- Show a friendly message instead of surfacing errors when auth fails.
+              return ("%s 2>/dev/null || printf 'gh not authenticated\\n'"):format(cmd)
             end
 
             local cmds = {
               {
                 title = "Notifications",
-                cmd = "gh notify -s -n5",
+                cmd = gh_cmd("gh notify -s -n5"),
                 action = function()
                   vim.ui.open("https://github.com/notifications")
                 end,
                 key = "n",
                 icon = " ",
                 height = 5,
-                enabled = function()
-                  return gh_ready({ "gh", "notify", "-s", "-n5" })
-                end,
+                enabled = gh_available,
               },
               {
                 title = "Open Issues",
-                cmd = "gh issue list -L 3",
+                cmd = gh_cmd("gh issue list -L 3"),
                 key = "i",
                 action = function()
                   vim.fn.jobstart("gh issue list --web", { detach = true })
                 end,
                 icon = " ",
                 height = 7,
-                enabled = function()
-                  return gh_ready({ "gh", "issue", "list", "-L", "3" })
-                end,
+                enabled = gh_available,
               },
               {
                 icon = " ",
                 title = "Open PRs",
-                cmd = "gh pr list -L 3",
+                cmd = gh_cmd("gh pr list -L 3"),
                 key = "P",
                 action = function()
                   vim.fn.jobstart("gh pr list --web", { detach = true })
                 end,
                 height = 7,
-                enabled = function()
-                  return gh_ready({ "gh", "pr", "list", "-L", "3" })
-                end,
+                enabled = gh_available,
               },
               {
                 icon = " ",
