@@ -211,12 +211,13 @@ return {
       { "gd",         function() Snacks.picker.lsp_declarations() end,   desc = "Find Declarations" },
       { "<leader>fx", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics CWD" },
       { "<leader>fX", function() Snacks.picker.diagnostics() end,        desc = "Diagnostics workspace" },
-      { "<leader>fm", function() Snacks.picker.man() end,                desc = "Find Man Entry" },
+      { "<leader>fM", function() Snacks.picker.man() end,                desc = "Find Man Entry" },
       { "<leader>fb", function() Snacks.picker.buffers() end,            desc = "Find Buffers" },
       { "<leader>fq", function() Snacks.picker.registers() end,          desc = "Find Registers" },
       { "<leader>fn", function() Snacks.picker.notifications() end,      desc = "Find Notification History" },
       { "<leader>fp", function() Snacks.picker.projects() end,           desc = "Find Projects" },
       { "<leader>fg", function() Snacks.picker.git_diff() end,           desc = "Find Git Diff (Hunks)" },
+      { "<leader>fm", function() Snacks.picker.marks() end,              desc = "Find Marks" },
       {
         "<leader>ut",
         function()

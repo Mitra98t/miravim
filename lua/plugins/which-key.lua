@@ -11,7 +11,7 @@ return {
 
     wk.setup({
       -- classic - modern - helix
-      preset = 'modern',
+      preset = 'helix',
     })
     wk.add({
       {
