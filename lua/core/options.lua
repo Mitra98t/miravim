@@ -52,3 +52,6 @@ opt.textwidth = 80
 opt.foldlevel = 99
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Use a global statusline
+opt.laststatus = 3
