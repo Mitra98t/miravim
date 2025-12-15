@@ -8,6 +8,13 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
+
+opt.textwidth = 80
+
+opt.foldlevel = 99
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- tabs & indentation
 opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2    -- 2 spaces for indent width
@@ -43,15 +50,3 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
-
--- set bufferline across all width
-opt.laststatus = 3
-
-opt.textwidth = 80
-
-opt.foldlevel = 99
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-
--- Use a global statusline
-opt.laststatus = 3

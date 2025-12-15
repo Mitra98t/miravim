@@ -3,6 +3,10 @@ return {
   lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
+    -- set bufferline across all width
+    vim.opt.laststatus = 3
+
+
     local lualine = require("lualine")
 
     -- Ascii emoji as mode in bufferline
