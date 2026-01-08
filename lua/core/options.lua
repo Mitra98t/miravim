@@ -1,5 +1,11 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+-- Connect to godot server if in godot project
+local project_file = vim.fn.getcwd() .. "/project.godot"
+if vim.fn.filereadable(project_file) == 1 then
+  vim.fn.serverstart './godothost'
+end
+
 -- vim.diagnostic.config({ virtual_text = false, underline = false })
 vim.diagnostic.config({ virtual_text = true, underline = false })
 

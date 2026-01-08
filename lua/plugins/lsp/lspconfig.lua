@@ -28,6 +28,20 @@ return {
       },
     })
 
+    -- Godot LSP setup
+    --
+    local project_file = vim.fn.getcwd() .. "/project.godot"
+    if vim.fn.filereadable(project_file) == 1 then
+
+      vim.cmd("LspStart gdscript")
+      vim.cmd("LspStart gdshader_lsp")
+      -- require("lspconfig").start_server({
+      --   name = "gdscript",
+      --   cmd = { "godot-lsp" },
+      --   capabilities = capabilities,
+      -- })
+    end
+
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     return {
       ensure_installed = {
@@ -45,5 +59,6 @@ return {
         end,
       },
     }
+
   end,
 }
