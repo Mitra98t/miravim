@@ -30,9 +30,11 @@ return {
     todo_comments.setup({
       keywords = {
         MIRA = { icon = "µ ", color = "mira", alt = { "mira" } },
+        MOD = { icon = "¿ ", color = "mod", alt = { "mod" } },
       },
       colors = {
-        mira = { "DiagnosticHint", "#95FE37" }
+        mira = { "DiagnosticHint", "#95FE37" },
+        mod = { "warning", "#FF8C00" }
       }
     })
   end,
