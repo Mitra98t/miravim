@@ -118,7 +118,7 @@ return {
         {
           mode = { "t" },
           { "<C-w>", [[<C-\><C-n><C-w>]], desc = "Enter normal mode" },
-          { "<esc>", [[<C-\><C-n>]],      desc = "Enter normal mode" },
+          -- { "<esc>", [[<C-\><C-n>]],      desc = "Enter normal mode" },
         },
       })
     end,

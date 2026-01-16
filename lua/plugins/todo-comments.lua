@@ -31,6 +31,7 @@ return {
       keywords = {
         MIRA = { icon = "µ ", color = "mira", alt = { "mira" } },
         MOD = { icon = "¿ ", color = "mod", alt = { "mod" } },
+        DEBG = { icon = " ", color = "mod", alt = { "debg" } },
       },
       colors = {
         mira = { "DiagnosticHint", "#95FE37" },
