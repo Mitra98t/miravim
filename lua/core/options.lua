@@ -6,8 +6,7 @@ if vim.fn.filereadable(project_file) == 1 then
   vim.fn.serverstart './godothost'
 end
 
--- vim.diagnostic.config({ virtual_text = false, underline = false })
-vim.diagnostic.config({ virtual_text = true, underline = false })
+vim.diagnostic.config({ virtual_text = false, underline = false })
 
 local opt = vim.opt
 
