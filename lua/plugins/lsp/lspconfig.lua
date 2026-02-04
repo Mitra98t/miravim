@@ -32,7 +32,6 @@ return {
     --
     local project_file = vim.fn.getcwd() .. "/project.godot"
     if vim.fn.filereadable(project_file) == 1 then
-
       vim.cmd("LspStart gdscript")
       vim.cmd("LspStart gdshader_lsp")
       -- require("lspconfig").start_server({
@@ -59,6 +58,5 @@ return {
         end,
       },
     }
-
   end,
 }
