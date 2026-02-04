@@ -8,6 +8,10 @@ return {
   },
   config = function()
     local wk = require('which-key')
+    local function write_file()
+      local ext = vim.fn.expand('%:e'):lower()
+      vim.cmd(ext == 'tex' and 'w!' or 'w')
+    end
 
     wk.setup({
       -- classic - modern - helix
@@ -24,7 +28,7 @@ return {
       },
       {
         mode = { 'v', 'n', 'i' },
-        { "<C-s>", "<cmd>w<cr>",    desc = "Write File" },
+        { "<C-s>", write_file,      desc = "Write File" },
         { "<C-q>", "<cmd>qall<cr>", desc = "Exit Nvim" }
       },
       {
