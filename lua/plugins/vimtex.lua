@@ -11,16 +11,24 @@ return {
   end,
   config = function()
     local wk = require("which-key")
+    local function toggle_tex_autosave()
+      if vim.bo.filetype ~= "tex" then
+        vim.notify("Open a .tex file to use this toggle", vim.log.levels.WARN, { title = "VimTeX" })
+        return
+      end
+      vim.cmd("TexAutosaveToggle")
+    end
 
     wk.add({
-      { "<leader>m",  group = "LaTeX",           },
-      { "<leader>mc", "<cmd>VimtexCompile<cr>", desc = "Compile",         },
-      { "<leader>ms", "<cmd>VimtexStop<cr>",    desc = "Stop Compiler",   },
-      { "<leader>mv", "<cmd>VimtexView<cr>",    desc = "View PDF",        },
-      { "<leader>mt", "<cmd>VimtexTocOpen<cr>", desc = "Open TOC",        },
+      { "<leader>m",  group = "LaTeX", },
+      { "<leader>mc", "<cmd>VimtexCompile<cr>", desc = "Compile", },
+      { "<leader>ms", "<cmd>VimtexStop<cr>",    desc = "Stop Compiler", },
+      { "<leader>mv", "<cmd>VimtexView<cr>",    desc = "View PDF", },
+      { "<leader>mt", "<cmd>VimtexTocOpen<cr>", desc = "Open TOC", },
       { "<leader>mk", "<cmd>VimtexClean<cr>",   desc = "Clean Aux Files", },
-      { "<leader>mK", "<cmd>VimtexClean!<cr>",  desc = "Clean Project",   },
-      { "<leader>me", "<cmd>VimtexErrors<cr>",  desc = "Show Errors",     },
+      { "<leader>mK", "<cmd>VimtexClean!<cr>",  desc = "Clean Project", },
+      { "<leader>me", "<cmd>VimtexErrors<cr>",  desc = "Show Errors", },
+      { "<leader>ma", toggle_tex_autosave,      desc = "Toggle autosave", },
     })
   end,
 }
