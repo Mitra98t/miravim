@@ -7,6 +7,18 @@ return {
   config = function()
     local wk = require 'which-key'
     wk.add({
+      {
+        mode = { "v" }, -- NORMAL and VISUAL mode
+        {
+          "<leader>gh",
+          ":CodeDiff history<CR>",
+          desc = "View selection history"
+        },
+      },
+      {
+        mode = { "n" }, -- NORMAL and VISUAL mode
+        { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "View file history" },
+      },
       { "<leader>gf", "<cmd>CodeDiff<cr>", desc = "Open Diff Visualizer" },
       {
         "<leader>gF",
