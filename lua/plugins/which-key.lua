@@ -21,6 +21,9 @@ return {
       {
         "<leader>u", group = "UI"
       },
+      { "<leader>us",  group = "Speelcheck" },
+      { "<leader>use", ":setlocal spell spelllang=en_us<cr>", desc = "Speelcheck" },
+      { "<leader>usi", ":setlocal spell spelllang=it_it<cr>", desc = "Speelcheck" },
       {
         mode = { 'v' },
         { "<S-Up>",   ":m '<-2<CR>gv=gv", desc = "Move up" },
