@@ -1,4 +1,7 @@
 .DS_Store
 lazy-lock.json
+.nvimlog
 
 lua/core/colorscheme_percist.lua
+
+after/ftplugin/markdown.lua
