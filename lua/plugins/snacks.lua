@@ -9,7 +9,7 @@ return {
     local Snacks = require 'snacks'
     Snacks.setup {
 
-      bigfile = { enabled = true },
+      bigfile = { enabled = true, notify = true },
       bufdelete = { enabled = true },
       debug = { enabled = true },
       explorer = { enabled = true },
