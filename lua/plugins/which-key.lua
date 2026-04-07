@@ -19,6 +19,9 @@ return {
     })
     wk.add({
       {
+        "<leader>m", group = "Real Time Renderers"
+      },
+      {
         "<leader>u", group = "UI"
       },
       { "<leader>us",  group = "Speelcheck" },
