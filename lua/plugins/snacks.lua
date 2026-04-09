@@ -19,7 +19,7 @@ return {
         enabled = true,
         hidden = true,
         ignored = true,
-        exclude = { "docs", "node_modules", ".git", "build" },
+        exclude = { "docs", "node_modules", ".git", "build", "build-cmake" },
         layout = {
           preset = "telescope",
         },
@@ -81,49 +81,62 @@ return {
           },
           function()
             local in_git = Snacks.git.get_root() ~= nil
-            local gh_available = in_git and vim.fn.executable("gh") == 1
+            local origin_url = nil
+            if in_git then
+              local origin_output = vim.fn.systemlist("git remote get-url origin 2>/dev/null")
+              if vim.v.shell_error == 0 and origin_output[1] then
+                origin_url = origin_output[1]
+              end
+            end
 
-            local function gh_cmd(cmd)
-              if not gh_available then
-                return "printf 'gh unavailable\\n'"
+            local is_github_repo = origin_url ~= nil and origin_url:match("github%.com") ~= nil
+            local git_cli = is_github_repo and "gh" or "glab"
+            local git_cli_available = in_git and vim.fn.executable(git_cli) == 1
+
+            local function repo_cmd(cmd)
+              if not git_cli_available then
+                return ("printf '%s unavailable\\n'"):format(git_cli)
               end
               -- Show a friendly message instead of surfacing errors when auth fails.
-              return ("%s 2>/dev/null || printf 'gh not authenticated\\n'"):format(cmd)
+              return ("%s 2>/dev/null || printf '%s not authenticated\\n'"):format(cmd, git_cli)
             end
+
+            local issue_list_cmd = is_github_repo and "gh issue list -L 3" or "glab issue list --per-page 3"
+            local mr_list_cmd = is_github_repo and "gh pr list -L 3" or "glab mr list --per-page 3"
 
             local cmds = {
               {
                 title = "Notifications",
-                cmd = gh_cmd("gh notify -s -n5"),
+                cmd = repo_cmd("gh notify -s -n5"),
                 action = function()
                   vim.ui.open("https://github.com/notifications")
                 end,
                 key = "n",
                 icon = " ",
                 height = 5,
-                enabled = gh_available,
+                enabled = is_github_repo and git_cli_available,
               },
               {
                 title = "Open Issues",
-                cmd = gh_cmd("gh issue list -L 3"),
+                cmd = repo_cmd(issue_list_cmd),
                 key = "i",
-                action = function()
+                action = is_github_repo and function()
                   vim.fn.jobstart("gh issue list --web", { detach = true })
-                end,
+                end or nil,
                 icon = " ",
                 height = 7,
-                enabled = gh_available,
+                enabled = git_cli_available,
               },
               {
                 icon = " ",
-                title = "Open PRs",
-                cmd = gh_cmd("gh pr list -L 3"),
+                title = is_github_repo and "Open PRs" or "Open MRs",
+                cmd = repo_cmd(mr_list_cmd),
                 key = "P",
-                action = function()
+                action = is_github_repo and function()
                   vim.fn.jobstart("gh pr list --web", { detach = true })
-                end,
+                end or nil,
                 height = 7,
-                enabled = gh_available,
+                enabled = git_cli_available,
               },
               {
                 icon = " ",
