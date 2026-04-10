@@ -15,7 +15,7 @@ A personal Neovim configuration built around [lazy.nvim](https://github.com/folk
 - `node` / `npm` — required by several LSP servers
 - `rust-analyzer` — Rust LSP (installed via rustup, not Mason)
 - `latexmk` — LaTeX compiler (used by vimtex)
-- TeX distribution with `xelatex` — required for Markdown → PDF via pandoc (e.g. MacTeX on macOS)
+- TeX distribution with at least one of `xelatex`, `lualatex`, `pdflatex` — required for Markdown → PDF via pandoc
 
 ### External tools launched from within Neovim
 
@@ -27,7 +27,7 @@ A personal Neovim configuration built around [lazy.nvim](https://github.com/folk
 | [`gh`](https://cli.github.com/)                       | GitHub issues/PRs on dashboard (optional)     |
 | [`glab`](https://gitlab.com/gitlab-org/cli)           | GitLab issues/MRs on dashboard (optional)     |
 | [Skim](https://skim-app.sourceforge.io/)              | PDF preview for LaTeX and Markdown on macOS; falls back to system viewer (Preview) if missing (optional) |
-| [`pandoc`](https://pandoc.org/)                       | Markdown → PDF conversion (macOS only)        |
+| [`pandoc`](https://pandoc.org/)                       | Markdown → PDF conversion                      |
 
 ### Formatters / linters (installed by Mason or manually)
 
@@ -70,9 +70,12 @@ lazy.nvim will bootstrap itself and install all plugins on the first launch.
 │   │   ├── lsp/
 │   │   │   └── lspconfig.lua  # Mason + LSP setup
 │   │   └── *.lua              # One file per plugin
+│   ├── private_plugin/        # User-local plugin specs (ignored by git, auto-imported if present)
 │   └── snippets/              # Custom snippets
 └── after/
 ```
+
+`lua/private_plugin/` is intentionally gitignored so each user can keep personal plugins and machine-specific settings without polluting the shared repository.
 
 ## Features
 
@@ -181,7 +184,7 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 
 ## Keymaps
 
-`<leader>` is `\` by default (Neovim default).
+`<leader>` is `<Space>`.
 
 ### Global
 
@@ -312,9 +315,9 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 | `<leader>mle` | Show errors            |
 | `<leader>mla` | Toggle autosave        |
 
-### `<leader>mm` — Markdown (macOS only)
+### `<leader>mm` — Markdown
 
-Renders the current Markdown file to PDF using `pandoc` + `xelatex`. The PDF is written to a temporary directory and opened in Skim (with live reload on each rebuild) if installed, otherwise in the system default PDF viewer.
+Renders the current Markdown file to PDF using `pandoc` plus the first available engine among `xelatex` / `lualatex` / `pdflatex`. The PDF is written to a temporary directory and opened with Skim on macOS when available, otherwise with the system default PDF viewer.
 
 | Key            | Action                         |
 | -------------- | ------------------------------ |
