@@ -19,15 +19,15 @@ A personal Neovim configuration built around [lazy.nvim](https://github.com/folk
 
 ### External tools launched from within Neovim
 
-| Tool                                                  | Used for                                      |
-| ----------------------------------------------------- | --------------------------------------------- |
-| [`lazygit`](https://github.com/jesseduffield/lazygit) | Full-screen Git TUI (`<leader>tg`)            |
-| [`btm`](https://github.com/ClementTsang/bottom)       | System monitor TUI (`<leader>tb`)             |
-| [`claude`](https://github.com/anthropics/claude-code) | Claude Code CLI (claudecode.nvim integration) |
-| [`gh`](https://cli.github.com/)                       | GitHub issues/PRs on dashboard (optional)     |
-| [`glab`](https://gitlab.com/gitlab-org/cli)           | GitLab issues/MRs on dashboard (optional)     |
+| Tool                                                  | Used for                                                                                                 |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [`lazygit`](https://github.com/jesseduffield/lazygit) | Full-screen Git TUI (`<leader>tg`)                                                                       |
+| [`btm`](https://github.com/ClementTsang/bottom)       | System monitor TUI (`<leader>tb`)                                                                        |
+| [`claude`](https://github.com/anthropics/claude-code) | Claude Code CLI (claudecode.nvim integration)                                                            |
+| [`gh`](https://cli.github.com/)                       | GitHub issues/PRs on dashboard (optional)                                                                |
+| [`glab`](https://gitlab.com/gitlab-org/cli)           | GitLab issues/MRs on dashboard (optional)                                                                |
 | [Skim](https://skim-app.sourceforge.io/)              | PDF preview for LaTeX and Markdown on macOS; falls back to system viewer (Preview) if missing (optional) |
-| [`pandoc`](https://pandoc.org/)                       | Markdown → PDF conversion                      |
+| [`pandoc`](https://pandoc.org/)                       | Markdown → PDF conversion                                                                                |
 
 ### Formatters / linters (installed by Mason or manually)
 
@@ -47,7 +47,7 @@ A personal Neovim configuration built around [lazy.nvim](https://github.com/folk
 # Back up any existing config first
 mv ~/.config/nvim ~/.config/nvim.bak
 
-git clone https://github.com/<your-username>/<your-repo> ~/.config/nvim
+git clone https://github.com/Mitra98t/miravim.git ~/.config/nvim
 nvim
 ```
 
@@ -121,16 +121,16 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 
 ### Language Support
 
-| Language                    | Tooling                                                                                                                |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **Rust**                    | [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) — run, debug, test via `<leader>c*` prompts; uses rust-analyzer |
-| **Godot / GDScript**        | LSP auto-started when `project.godot` is detected; DAP connects to Godot editor on `localhost:6006`                    |
-| **JavaScript / TypeScript** | LSP + prettier + eslint_d; auto-tag closing via nvim-ts-autotag                                                        |
-| **Python**                  | LSP + black + isort                                                                                                    |
+| Language                    | Tooling                                                                                                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Rust**                    | [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) — run, debug, test via `<leader>c*` prompts; uses rust-analyzer                                              |
+| **Godot / GDScript**        | LSP auto-started when `project.godot` is detected; DAP connects to Godot editor on `localhost:6006`                                                                 |
+| **JavaScript / TypeScript** | LSP + prettier + eslint_d; auto-tag closing via nvim-ts-autotag                                                                                                     |
+| **Python**                  | LSP + black + isort                                                                                                                                                 |
 | **LaTeX**                   | [vimtex](https://github.com/lervag/vimtex) + Skim viewer (falls back to system default if Skim is absent); auto-detects `main.tex` by walking up the directory tree |
-| **C / C++**                 | clangd (via Mason)                                                                                                     |
-| **Lua**                     | stylua + ast-grep                                                                                                      |
-| **Love2D**                  | [love2d.nvim](https://github.com/S1M0N38/love2d.nvim) — run and manage Love2D projects                                 |
+| **C / C++**                 | clangd (via Mason)                                                                                                                                                  |
+| **Lua**                     | stylua + ast-grep                                                                                                                                                   |
+| **Love2D**                  | [love2d.nvim](https://github.com/S1M0N38/love2d.nvim) — run and manage Love2D projects                                                                              |
 
 ### Formatting
 
@@ -142,10 +142,10 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 
 ### AI
 
-| Plugin                                                                 | Notes                                                                                                   |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [claudecode.nvim](https://github.com/coder/claudecode.nvim)          | Integrates the Claude Code CLI: toggle/focus the terminal, send selections, manage diffs (`<leader>a*`) |
-| [copilot.vim](https://github.com/github/copilot.vim)                 | Inline ghost-text completions — loaded but **disabled by default**                                      |
+| Plugin                                                      | Notes                                                                                                   |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [claudecode.nvim](https://github.com/coder/claudecode.nvim) | Integrates the Claude Code CLI: toggle/focus the terminal, send selections, manage diffs (`<leader>a*`) |
+| [copilot.vim](https://github.com/github/copilot.vim)        | Inline ghost-text completions — loaded but **disabled by default**                                      |
 
 ### Git
 
@@ -165,20 +165,20 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 
 ### Other
 
-| Plugin                                                                                     | Notes                                                                                  |
-| ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)                              | Floating and persistent terminal windows; pre-configured instances for lazygit and btm |
-| [trouble.nvim](https://github.com/folke/trouble.nvim)                                      | Pretty diagnostics list, LSP references panel, and quickfix integration                |
-| [neogen](https://github.com/danymat/neogen)                                                | Generates doc comments (Doxygen-style) for functions and types                         |
-| [markview.nvim](https://github.com/OXY2DEV/markview.nvim)                                  | Renders Markdown in-buffer (headings, tables, code blocks) while editing               |
-| [markdown-toc.nvim](https://github.com/hedyhli/markdown-toc.nvim)                          | Generates and updates a table of contents in Markdown files via `:Mtoc`                |
+| Plugin                                                                                     | Notes                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)                              | Floating and persistent terminal windows; pre-configured instances for lazygit and btm                                                                                                 |
+| [trouble.nvim](https://github.com/folke/trouble.nvim)                                      | Pretty diagnostics list, LSP references panel, and quickfix integration                                                                                                                |
+| [neogen](https://github.com/danymat/neogen)                                                | Generates doc comments (Doxygen-style) for functions and types                                                                                                                         |
+| [markview.nvim](https://github.com/OXY2DEV/markview.nvim)                                  | Renders Markdown in-buffer (headings, tables, code blocks) while editing                                                                                                               |
+| [markdown-toc.nvim](https://github.com/hedyhli/markdown-toc.nvim)                          | Generates and updates a table of contents in Markdown files via `:Mtoc`                                                                                                                |
 | Markdown PDF (ftplugin)                                                                    | Converts the current file to PDF via `pandoc` + `xelatex`, previewed in Skim if installed, otherwise system default viewer (macOS only); toggle auto-render on save with `<leader>mmr` |
-| [nvim-colorizer](https://github.com/NvChad/nvim-colorizer.lua)                             | Inline color preview for hex codes and CSS color names                                 |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                      | Syntax highlighting, indentation, folding, and incremental selection                   |
-| [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)                               | Auto-closes and renames HTML/JSX tags                                                  |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)                                 | Auto-closes brackets, quotes, and other pairs                                          |
-| [fluoride](https://github.com/xero/fluoride.vim)                                           | Miscellaneous utilities                                                                |
-| [better-inline-diagnostics](https://github.com/sontungexpt/better-diagnostic-virtual-text) | Improved inline diagnostic display                                                     |
+| [nvim-colorizer](https://github.com/NvChad/nvim-colorizer.lua)                             | Inline color preview for hex codes and CSS color names                                                                                                                                 |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                      | Syntax highlighting, indentation, folding, and incremental selection                                                                                                                   |
+| [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)                               | Auto-closes and renames HTML/JSX tags                                                                                                                                                  |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs)                                 | Auto-closes brackets, quotes, and other pairs                                                                                                                                          |
+| [fluoride](https://github.com/xero/fluoride.vim)                                           | Miscellaneous utilities                                                                                                                                                                |
+| [better-inline-diagnostics](https://github.com/sontungexpt/better-diagnostic-virtual-text) | Improved inline diagnostic display                                                                                                                                                     |
 
 ---
 
@@ -319,10 +319,10 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 
 Renders the current Markdown file to PDF using `pandoc` plus the first available engine among `xelatex` / `lualatex` / `pdflatex`. The PDF is written to a temporary directory and opened with Skim on macOS when available, otherwise with the system default PDF viewer.
 
-| Key            | Action                         |
-| -------------- | ------------------------------ |
-| `<leader>mmr`  | Toggle auto PDF render on save |
-| `<leader>mmp`  | Render PDF now                 |
+| Key           | Action                         |
+| ------------- | ------------------------------ |
+| `<leader>mmr` | Toggle auto PDF render on save |
+| `<leader>mmp` | Render PDF now                 |
 
 ### `<leader>t` — Terminal
 
