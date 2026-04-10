@@ -18,7 +18,6 @@ return {
     wk.add({
       { "]c",         "<cmd>Gitsigns nav_hunk next<cr>",       desc = "Goto Next Hunk" },
       { "[c",         "<cmd>Gitsigns nav_hunk prev<cr>",       desc = "Goto Prev Hunk" },
-      { "<leader>g",  group = "Git" },
       { "<leader>gb", "<cmd>Gitsigns blame<cr>",               desc = "Show Blame of Entire File" },
       { "<leader>gg", "<cmd>Gitsigns preview_hunk<cr>",        desc = "Preview Hunk" },
       { "<leader>gG", "<cmd>Gitsigns preview_hunk_inline<cr>", desc = "Preview Hunk Inline" },

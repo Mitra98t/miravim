@@ -1,12 +1,13 @@
 return {
   "esmuellert/codediff.nvim",
   dependencies = { "MunifTanjim/nui.nvim" },
-  lazy = true,
+  lazy = false,
   event = { "BufReadPre", "BufNewFile" },
   cmd = "CodeDiff",
   config = function()
     local wk = require 'which-key'
     wk.add({
+      { "<leader>g",  group = "Git" },
       {
         mode = { "v" }, -- NORMAL and VISUAL mode
         {
@@ -19,17 +20,31 @@ return {
         mode = { "n" }, -- NORMAL and VISUAL mode
         { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "View file history" },
       },
-      { "<leader>gf", "<cmd>CodeDiff<cr>", desc = "Open Diff Visualizer" },
+      { "<leader>gf", "<cmd>CodeDiff file HEAD<cr>",    desc = "Diff file vs HEAD" },
+      { "<leader>gF", "<cmd>CodeDiff file HEAD~1<cr>", desc = "Diff file vs HEAD~1" },
+      { "<leader>gd", "<cmd>CodeDiff<cr>",             desc = "Git status explorer" },
       {
-        "<leader>gF",
+        "<leader>gp",
         function()
-          vim.ui.input({ prompt = "CodeDiff revision (es: HEAD, HEAD~1, main, v1.0.0): ", default = "HEAD" },
-            function(rev)
-              if not rev or rev == "" then return end
-              vim.cmd("CodeDiff file " .. rev)
-            end)
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes(":CodeDiff ...<Left><Left><Left>", true, true, true),
+            "n",
+            false
+          )
         end,
-        desc = "CodeDiff current file vs revision"
+        desc = "PR diff (merge-base, inserisci branch)"
+      },
+      { "<leader>gH", "<cmd>CodeDiff history<cr>",     desc = "Repo commit history" },
+      {
+        "<leader>gD",
+        function()
+          vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes(":CodeDiff ", true, true, true),
+            "n",
+            false
+          )
+        end,
+        desc = "CodeDiff (custom revision)"
       },
     })
   end,
