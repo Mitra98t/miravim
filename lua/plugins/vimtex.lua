@@ -3,7 +3,11 @@ return {
   lazy = false, -- we don't want to lazy load VimTeX
   -- tag = "v2.15", -- uncomment to pin to a specific release
   init = function()
-    vim.g.vimtex_view_method = "skim"
+    if vim.fn.isdirectory("/Applications/Skim.app") == 1 then
+      vim.g.vimtex_view_method = "skim"
+    else
+      vim.g.vimtex_view_method = "general"
+    end
     vim.g.vimtex_compiler_latexmk = {
       out_dir = "build",
       build_dir = "build",

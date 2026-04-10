@@ -15,6 +15,8 @@ local function paths()
   return md, pdf
 end
 
+local has_skim = vim.fn.isdirectory("/Applications/Skim.app") == 1
+
 local function skim_refresh(pdf)
   local script = string.format([[
 set theFile to POSIX file "%s" as alias
@@ -29,6 +31,14 @@ end tell
 ]], pdf)
 
   vim.fn.jobstart({ "osascript", "-e", script }, { detach = true })
+end
+
+local function open_pdf(pdf)
+  if has_skim then
+    skim_refresh(pdf)
+  else
+    vim.fn.jobstart({ "open", pdf }, { detach = true })
+  end
 end
 
 local function build_pdf()
@@ -47,7 +57,7 @@ local function build_pdf()
     on_exit = function(_, code)
       if code == 0 then
         vim.schedule(function()
-          skim_refresh(pdf)
+          open_pdf(pdf)
         end)
       else
         vim.schedule(function()
