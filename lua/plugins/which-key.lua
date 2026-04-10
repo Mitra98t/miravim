@@ -40,6 +40,7 @@ return {
         { "<C-s>", write_file,      desc = "Write File" },
         { "<C-q>", "<cmd>qall<cr>", desc = "Exit Nvim" }
       },
+      { "<leader>c", group = "Code" },
       {
         { "gd",         "<cmd>FzfLua lsp_declarations<cr>", desc = "Go to declaration" },
         { "<leader>cr", vim.lsp.buf.rename,                 desc = "Smart Rename" },
