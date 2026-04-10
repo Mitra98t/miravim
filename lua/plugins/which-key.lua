@@ -22,6 +22,9 @@ return {
         "<leader>m", group = "Real Time Renderers"
       },
       {
+        "<leader>mm", group = "Markdown"
+      },
+      {
         "<leader>u", group = "UI"
       },
       { "<leader>us",  group = "Speelcheck" },
