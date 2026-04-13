@@ -3,6 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
+    local format_on_save_enabled = false
 
     conform.setup({
       formatters_by_ft = {
@@ -21,26 +22,40 @@ return {
         lua = { "ast-grep", "stylua" },
         python = { "isort", "black" },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 1000,
-      },
+      format_on_save = function(_)
+        if format_on_save_enabled then
+          return { lsp_fallback = true, async = false, timeout_ms = 1000 }
+        end
+      end,
     })
 
     local wk = require("which-key")
 
     wk.add({
       {
-        "<leader>cf",
+        mode = { "n", "v" }, -- NORMAL and VISUAL mode
+        {
+          "<leader>cf",
+          function()
+            conform.format({
+              lsp_fallback = true,
+              async = false,
+              timeout_ms = 1000,
+            })
+          end,
+          desc = "Format file (or range in visual mode)"
+        }
+      },
+      {
+        "<leader>uf",
         function()
-          conform.format({
-            lsp_fallback = true,
-            async = false,
-            timeout_ms = 1000,
-          })
+          format_on_save_enabled = not format_on_save_enabled
+          vim.notify(
+            "Format on save " .. (format_on_save_enabled and "enabled" or "disabled"),
+            vim.log.levels.INFO
+          )
         end,
-        desc = "Format file (or range in visual mode)"
+        desc = "Toggle format on save"
       }
     })
   end,
