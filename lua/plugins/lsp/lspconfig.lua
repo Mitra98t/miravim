@@ -41,6 +41,17 @@ return {
       -- })
     end
 
+    -- Rimuove i default LSP keymaps di Neovim 0.10+ (grn, gra, grr, gri, gO, K)
+    -- che confliggono con i nostri mapping globali in snacks.lua / which-key.lua
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local defaults = { "grn", "grr", "gra", "gri", "gO", "K" }
+        for _, key in ipairs(defaults) do
+          pcall(vim.keymap.del, "n", key, { buffer = args.buf })
+        end
+      end,
+    })
+
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     return {
       ensure_installed = {

@@ -194,7 +194,12 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 | `<C-q>`    | n / v / i | Quit all (`:qall`)                              |
 | `<S-Up>`   | v         | Move selection up                               |
 | `<S-Down>` | v         | Move selection down                             |
-| `gd`       | n         | Go to declaration (LSP)                         |
+| `gd`       | n         | Go to definition (LSP)                          |
+| `gD`       | n         | Go to declaration (LSP)                         |
+| `gi`       | n         | Go to implementation (LSP)                      |
+| `gr`       | n         | Go to references (LSP)                          |
+| `gy`       | n         | Go to type definition (LSP)                     |
+| `K`        | n         | Hover documentation (LSP)                       |
 | `]]`       | n         | Next LSP document symbol                        |
 | `[[`       | n         | Previous LSP document symbol                    |
 | `s`        | n / x / o | Flash jump (character-based navigation)         |
@@ -223,6 +228,7 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 | Key          | Action                                |
 | ------------ | ------------------------------------- |
 | `<leader>cf` | Format file (or range in visual mode) |
+| `<leader>ca` | LSP code action                       |
 | `<leader>cr` | LSP rename symbol                     |
 | `<leader>cd` | Rust: quick debug (prompts for args)  |
 | `<leader>cD` | Rust: debuggables picker              |
@@ -260,7 +266,6 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 | `<leader>fW`       | n     | Grep across project (full input)   |
 | `<leader>fs`       | n     | LSP symbols                        |
 | `<leader>fr`       | n     | LSP references                     |
-| `<leader>fd`       | n     | LSP declarations                   |
 | `<leader>fb`       | n     | Open buffers                       |
 | `<leader>ft`       | n     | TODO comments                      |
 | `<leader>fl`       | n     | Lines in current buffer            |
@@ -293,7 +298,7 @@ Themes: miasma · gruvbox · vague · catppuccin · rose-pine · nord · everfor
 | `<leader>gp` | n    | PR diff — prompts for branch name |
 | `<leader>gD` | n    | CodeDiff with custom revision     |
 
-### `<leader>l` — LSP / Diagnostics
+### `<leader>l` — Diagnostics
 
 | Key          | Action                        |
 | ------------ | ----------------------------- |

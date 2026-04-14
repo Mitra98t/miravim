@@ -43,7 +43,8 @@ return {
       { "<leader>a", group = "AI/Claude Code" },
       { "<leader>c", group = "Code" },
       {
-        { "<leader>cr", vim.lsp.buf.rename, desc = "Smart Rename" },
+        { "<leader>cr", vim.lsp.buf.rename,       desc = "Smart Rename" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" },
       }
     })
   end

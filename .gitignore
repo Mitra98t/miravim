@@ -3,6 +3,7 @@ lazy-lock.json
 .nvimlog
 
 lua/core/colorscheme_percist.lua
+lua/core/local_options.lua
 lua/private_plugin/
 
 nvim.log

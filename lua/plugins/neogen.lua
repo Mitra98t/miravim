@@ -9,7 +9,7 @@ return {
       local wk = require("which-key")
 
       wk.add({
-        {"<leader>l", group="LSP"},
+        {"<leader>l", group="Diagnostics"},
         { "<leader>ld", vim.diagnostic.open_float,          desc = "Show Line Diagnostic" },
         { "<leader>ln", vim.diagnostic.goto_next,           desc = "Next Diagnostic" },
         { "<leader>lr", vim.diagnostic.goto_prev,           desc = "Previous Diagnostic" },

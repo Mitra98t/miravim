@@ -49,6 +49,12 @@ return {
         lualine_b = { "filename", "branch" },
         lualine_c = {
           "diff",
+          {
+            function()
+              local t = require("todo_pile").top_text()
+              return t ~= "" and ("● " .. t) or ""
+            end,
+          },
         },
         lualine_x = {
           "diagnostics",
