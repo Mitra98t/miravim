@@ -84,3 +84,7 @@ end, { desc = "Go to next document symbol" })
 vim.keymap.set("n", "[[", function()
   goto_symbol(-1)
 end, { desc = "Go to previous document symbol" })
+
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>cu", require("undotree").open, {desc = "Toggle undo tree"})
+
