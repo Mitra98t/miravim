@@ -1,4 +1,8 @@
 return {
+  {
+    "ember-theme/nvim",
+    name ="ember"
+  },
   "xero/miasma.nvim",
   "nvim-tree/nvim-web-devicons",
   "ellisonleao/gruvbox.nvim",
