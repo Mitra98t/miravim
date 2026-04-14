@@ -19,7 +19,7 @@ return {
         enabled = true,
         hidden = true,
         ignored = true,
-        exclude = { "docs", "node_modules", ".git", "build", "build-cmake" },
+        exclude = { "docs", "node_modules", ".git", },
         layout = {
           preset = "telescope",
         },
