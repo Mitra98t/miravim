@@ -20,7 +20,7 @@ return {
         mode = { "n" }, -- NORMAL and VISUAL mode
         { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "View file history" },
       },
-      { "<leader>gf", "<cmd>CodeDiff file HEAD<cr>",    desc = "Diff file vs HEAD" },
+      { "<leader>gf", "<cmd>CodeDiff file HEAD --inline<cr>",    desc = "Diff file vs HEAD" },
       { "<leader>gF", "<cmd>CodeDiff file HEAD~1<cr>", desc = "Diff file vs HEAD~1" },
       { "<leader>gd", "<cmd>CodeDiff<cr>",             desc = "Git status explorer" },
       {
