@@ -10,7 +10,7 @@ return {
     --- Put your configuration here
     ---@type Neominimap.UserConfig
     vim.g.neominimap = {
-      auto_enable = true,
+      auto_enable = false,
     }
   end,
   config = function()
@@ -21,8 +21,6 @@ return {
 
       -- Global Minimap Controls
       { "<leader>unm",  "<cmd>Neominimap Toggle<cr>",      desc = "Toggle global minimap" },
-      { "<leader>uno",  "<cmd>Neominimap Enable<cr>",      desc = "Enable global minimap" },
-      { "<leader>unc",  "<cmd>Neominimap Disable<cr>",     desc = "Disable global minimap" },
       { "<leader>unr",  "<cmd>Neominimap Refresh<cr>",     desc = "Refresh global minimap" },
 
       -- Window-Specific Minimap Controls
