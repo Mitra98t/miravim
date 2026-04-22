@@ -20,9 +20,9 @@ return {
         mode = { "n" }, -- NORMAL and VISUAL mode
         { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "View file history" },
       },
-      { "<leader>gf", "<cmd>CodeDiff file HEAD --inline<cr>",    desc = "Diff file vs HEAD" },
-      { "<leader>gF", "<cmd>CodeDiff file HEAD~1<cr>", desc = "Diff file vs HEAD~1" },
-      { "<leader>gd", "<cmd>CodeDiff<cr>",             desc = "Git status explorer" },
+      { "<leader>gf", "<cmd>CodeDiff file HEAD --inline<cr>", desc = "Diff file vs HEAD" },
+      { "<leader>gF", "<cmd>CodeDiff HEAD<cr>",               desc = "Diff repo vs HEAD" },
+      { "<leader>gd", "<cmd>CodeDiff<cr>",                    desc = "Git status explorer" },
       {
         "<leader>gp",
         function()
@@ -34,7 +34,7 @@ return {
         end,
         desc = "PR diff (merge-base, inserisci branch)"
       },
-      { "<leader>gH", "<cmd>CodeDiff history<cr>",     desc = "Repo commit history" },
+      { "<leader>gH", "<cmd>CodeDiff history<cr>", desc = "Repo commit history" },
       {
         "<leader>gD",
         function()
