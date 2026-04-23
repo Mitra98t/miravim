@@ -3,7 +3,6 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
-    local format_on_save_enabled = true
 
     conform.setup({
       formatters_by_ft = {
@@ -25,7 +24,7 @@ return {
         python = { "isort", "black" },
       },
       format_on_save = function(_)
-        if format_on_save_enabled then
+        if vim.g.format_on_save_enabled then
           return { lsp_fallback = true, async = false, timeout_ms = 1000 }
         end
       end,
@@ -51,9 +50,10 @@ return {
       {
         "<leader>uf",
         function()
-          format_on_save_enabled = not format_on_save_enabled
+          vim.g.format_on_save_enabled = not vim.g.format_on_save_enabled
+          require("core.ui_persist").save("format_on_save", vim.g.format_on_save_enabled)
           vim.notify(
-            "Format on save " .. (format_on_save_enabled and "enabled" or "disabled"),
+            "Format on save " .. (vim.g.format_on_save_enabled and "enabled" or "disabled"),
             vim.log.levels.INFO
           )
         end,

@@ -344,6 +344,8 @@ Renders the current Markdown file to PDF using `pandoc` plus the first available
 | -------------- | -------------------------------- |
 | `<leader>ut`   | Theme switcher (live preview)    |
 | `<leader>uz`   | Zen mode                         |
+| `<leader>up`   | Toggle statusline path           |
+| `<leader>ub`   | Toggle statusline breadcrumbs    |
 | `<leader>use`  | Enable English spellcheck        |
 | `<leader>usi`  | Enable Italian spellcheck        |
 | `<leader>unm`  | Toggle minimap (global)          |

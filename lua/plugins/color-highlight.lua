@@ -9,7 +9,11 @@ return {
     })
     local wk = require 'which-key'
     wk.add({
-      { "<leader>uc", "<cmd>ColorizerToggle<cr>", desc = "Toggle colors display on current buffer" },
+      { "<leader>uc", function()
+          vim.cmd("ColorizerToggle")
+          vim.g.colorizer_enabled = not vim.g.colorizer_enabled
+          require("core.ui_persist").save("colorizer", vim.g.colorizer_enabled)
+        end, desc = "Toggle colors display on current buffer" },
     })
   end,
 }

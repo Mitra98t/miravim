@@ -27,9 +27,31 @@ return {
       {
         "<leader>u", group = "UI"
       },
+      { "<leader>up", function()
+          vim.g.statusline_show_path = not vim.g.statusline_show_path
+          require("core.ui_persist").save("path", vim.g.statusline_show_path)
+          vim.notify("Statusline path " .. (vim.g.statusline_show_path and "enabled" or "disabled"))
+        end, desc = "Toggle statusline path" },
+      { "<leader>ub", function()
+          vim.g.statusline_show_breadcrumbs = not vim.g.statusline_show_breadcrumbs
+          require("core.ui_persist").save("breadcrumbs", vim.g.statusline_show_breadcrumbs)
+          vim.notify("Statusline breadcrumbs " .. (vim.g.statusline_show_breadcrumbs and "enabled" or "disabled"))
+        end, desc = "Toggle statusline breadcrumbs" },
       { "<leader>us",  group = "Speelcheck" },
-      { "<leader>use", ":setlocal spell spelllang=en_us<cr>", desc = "Speelcheck" },
-      { "<leader>usi", ":setlocal spell spelllang=it_it<cr>", desc = "Speelcheck" },
+      { "<leader>use", function()
+          vim.opt.spell = true
+          vim.opt.spelllang = "en_us"
+          local p = require("core.ui_persist")
+          p.save("spell", true)
+          p.save("spelllang", "en_us")
+        end, desc = "Speelcheck English" },
+      { "<leader>usi", function()
+          vim.opt.spell = true
+          vim.opt.spelllang = "it_it"
+          local p = require("core.ui_persist")
+          p.save("spell", true)
+          p.save("spelllang", "it_it")
+        end, desc = "Speelcheck Italian" },
       {
         mode = { 'v' },
         { "<S-Up>",   ":m '<-2<CR>gv=gv", desc = "Move up" },

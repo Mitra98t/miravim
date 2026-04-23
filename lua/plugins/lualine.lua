@@ -59,32 +59,60 @@ return {
           {
             function()
               local MAX_WIDTH = math.floor(vim.o.columns * 0.6)
-              local filename = vim.fn.expand("%:t")
-              if filename == "" then return "" end
+              local relpath = vim.fn.expand("%:.")
+              if relpath == "" then return "" end
               local modified = vim.bo.modified and "+" or " "
-              filename = "[" .. modified .. "] " .. filename
-              local ok, navic = pcall(require, "nvim-navic")
-              if not (ok and navic.is_available()) then return filename end
-              local data = navic.get_data()
-              if not data or #data == 0 then return filename end
 
-              local parts = {}
-              for _, item in ipairs(data) do
-                table.insert(parts, item.name)
-              end
-
-              local full = filename .. " > " .. table.concat(parts, " > ")
-              if #full <= MAX_WIDTH then return full end
-
-              local short = {}
-              for _, p in ipairs(parts) do
-                if #p > 4 then
-                  table.insert(short, p:sub(1, 2) .. "..")
-                else
-                  table.insert(short, p)
+              local path_parts = vim.split(relpath, "/", { plain = true })
+              local filename = path_parts[#path_parts]
+              local dirs = vim.g.statusline_show_path and {} or nil
+              if dirs then
+                for i = 1, #path_parts - 1 do
+                  table.insert(dirs, path_parts[i])
                 end
               end
-              return filename .. " > " .. table.concat(short, " > ")
+
+              local function build(ds, fname, navic_parts)
+                local p = (ds and #ds > 0) and (table.concat(ds, "/") .. "/" .. fname) or fname
+                if navic_parts and #navic_parts > 0 then
+                  p = p .. " > " .. table.concat(navic_parts, " > ")
+                end
+                return "[" .. modified .. "] " .. p
+              end
+
+              local function shorten(s)
+                if #s > 4 then return s:sub(1, 2) .. ".." end
+                return s
+              end
+
+              local navic_parts = {}
+              if vim.g.statusline_show_breadcrumbs then
+                local ok, navic = pcall(require, "nvim-navic")
+                if ok and navic.is_available() then
+                  local data = navic.get_data()
+                  if data then
+                    for _, item in ipairs(data) do
+                      table.insert(navic_parts, item.name)
+                    end
+                  end
+                end
+              end
+
+              local full = build(dirs, filename, navic_parts)
+              if #full <= MAX_WIDTH then return full end
+
+              local short_dirs = nil
+              if dirs then
+                short_dirs = {}
+                for _, d in ipairs(dirs) do
+                  table.insert(short_dirs, shorten(d))
+                end
+              end
+              local short_navic = {}
+              for _, p in ipairs(navic_parts) do
+                table.insert(short_navic, shorten(p))
+              end
+              return build(short_dirs, filename, short_navic)
             end,
           },
         },

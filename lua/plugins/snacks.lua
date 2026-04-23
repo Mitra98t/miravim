@@ -250,13 +250,7 @@ return {
                 picker.preview.state.colorscheme = nil
                 vim.schedule(function()
                   vim.cmd("colorscheme " .. item.text)
-                  local config_file = vim.fn.stdpath("config") .. "/lua/core/colorscheme_percist.lua"
-
-                  local content = {
-                    "vim.cmd 'colorscheme " .. item.text .. "'",
-                  }
-
-                  vim.fn.writefile(content, config_file)
+                  require("core.ui_persist").save("colorscheme", item.text)
                 end)
               end
             end,
