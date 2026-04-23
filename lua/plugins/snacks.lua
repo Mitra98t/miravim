@@ -199,7 +199,7 @@ return {
       { "<leader>ff", function() Snacks.picker.resume() end,        desc = "Resume last search" },
       { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Find TODOs" },
       {
-        "<leader>fW",
+        "<leader>fw",
         function()
           Snacks.picker.grep({
             layout = { preset = "bottom", }
@@ -208,7 +208,7 @@ return {
         desc = "Find Word"
       },
       {
-        "<leader>fw",
+        "<leader>fW",
         function()
           Snacks.picker.grep_word({
             layout = { preset = "bottom", }
@@ -216,25 +216,25 @@ return {
         end,
         desc = "Find Word under cursor"
       },
-      { "<leader>fl", function() Snacks.picker.lines() end,              desc = "Find Commands" },
+      { "<leader>fl", function() Snacks.picker.lines() end,                desc = "Find Commands" },
       -- FIX: doed not work as expected
       { "<leader>fs", function() Snacks.picker.lsp_symbols() end,          desc = "Find Symbols" },
-      { "<leader>fr", function() Snacks.picker.lsp_references() end,     desc = "Find References" },
-      { "gd",         function() Snacks.picker.lsp_definitions() end,    desc = "Go to Definition" },
-      { "gD",         function() Snacks.picker.lsp_declarations() end,   desc = "Go to Declaration" },
-      { "gi",         function() Snacks.picker.lsp_implementations() end, desc = "Go to Implementation" },
-      { "gr",         function() Snacks.picker.lsp_references() end,     desc = "Go to References" },
+      { "<leader>fr", function() Snacks.picker.lsp_references() end,       desc = "Find References" },
+      { "gd",         function() Snacks.picker.lsp_definitions() end,      desc = "Go to Definition" },
+      { "gD",         function() Snacks.picker.lsp_declarations() end,     desc = "Go to Declaration" },
+      { "gi",         function() Snacks.picker.lsp_implementations() end,  desc = "Go to Implementation" },
+      { "gr",         function() Snacks.picker.lsp_references() end,       desc = "Go to References" },
       { "gy",         function() Snacks.picker.lsp_type_definitions() end, desc = "Go to Type Definition" },
-      { "K",          function() vim.lsp.buf.hover() end,                desc = "Hover Documentation" },
-      { "<leader>fx", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics CWD" },
-      { "<leader>fX", function() Snacks.picker.diagnostics() end,        desc = "Diagnostics workspace" },
-      { "<leader>fM", function() Snacks.picker.man() end,                desc = "Find Man Entry" },
-      { "<leader>fb", function() Snacks.picker.buffers() end,            desc = "Find Buffers" },
-      { "<leader>fq", function() Snacks.picker.registers() end,          desc = "Find Registers" },
-      { "<leader>fn", function() Snacks.picker.notifications() end,      desc = "Find Notification History" },
-      { "<leader>fp", function() Snacks.picker.projects() end,           desc = "Find Projects" },
-      { "<leader>fg", function() Snacks.picker.git_diff() end,           desc = "Find Git Diff (Hunks)" },
-      { "<leader>fm", function() Snacks.picker.marks() end,              desc = "Find Marks" },
+      { "K",          function() vim.lsp.buf.hover() end,                  desc = "Hover Documentation" },
+      { "<leader>fx", function() Snacks.picker.diagnostics_buffer() end,   desc = "Diagnostics CWD" },
+      { "<leader>fX", function() Snacks.picker.diagnostics() end,          desc = "Diagnostics workspace" },
+      { "<leader>fM", function() Snacks.picker.man() end,                  desc = "Find Man Entry" },
+      { "<leader>fb", function() Snacks.picker.buffers() end,              desc = "Find Buffers" },
+      { "<leader>fq", function() Snacks.picker.registers() end,            desc = "Find Registers" },
+      { "<leader>fn", function() Snacks.picker.notifications() end,        desc = "Find Notification History" },
+      { "<leader>fp", function() Snacks.picker.projects() end,             desc = "Find Projects" },
+      { "<leader>fg", function() Snacks.picker.git_diff() end,             desc = "Find Git Diff (Hunks)" },
+      { "<leader>fm", function() Snacks.picker.marks() end,                desc = "Find Marks" },
       {
         "<leader>ut",
         function()
