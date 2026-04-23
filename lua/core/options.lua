@@ -14,7 +14,7 @@ opt.relativenumber = true
 opt.number = true
 
 
-opt.textwidth = 110
+opt.textwidth = 80
 
 opt.foldlevel = 99
 opt.foldmethod = "expr"
