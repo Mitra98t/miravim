@@ -1,13 +1,14 @@
 return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
   config = function()
     -- set bufferline across all width
     vim.opt.laststatus = 3
 
 
     local lualine = require("lualine")
+    require("nvim-navic").setup({ highlight = false, separator = " > " })
 
     -- Ascii emoji as mode in bufferline
     local mode_map = {
@@ -46,9 +47,48 @@ return {
             right_padding = 2,
           },
         },
-        lualine_b = { "filename", "branch" },
-        lualine_c = {
+        lualine_b = {
+          {
+            "branch",
+            fmt = function(s)
+              if #s > 12 then return s:sub(1, 12) .. ".." end
+              return s
+            end,
+          },
           "diff",
+          {
+            function()
+              local MAX_WIDTH = math.floor(vim.o.columns * 0.6)
+              local filename = vim.fn.expand("%:t")
+              if filename == "" then return "" end
+              local modified = vim.bo.modified and "+" or " "
+              filename = "[" .. modified .. "] " .. filename
+              local ok, navic = pcall(require, "nvim-navic")
+              if not (ok and navic.is_available()) then return filename end
+              local data = navic.get_data()
+              if not data or #data == 0 then return filename end
+
+              local parts = {}
+              for _, item in ipairs(data) do
+                table.insert(parts, item.name)
+              end
+
+              local full = filename .. " > " .. table.concat(parts, " > ")
+              if #full <= MAX_WIDTH then return full end
+
+              local short = {}
+              for _, p in ipairs(parts) do
+                if #p > 4 then
+                  table.insert(short, p:sub(1, 2) .. "..")
+                else
+                  table.insert(short, p)
+                end
+              end
+              return filename .. " > " .. table.concat(short, " > ")
+            end,
+          },
+        },
+        lualine_c = {
           {
             function()
               local t = require("todo_pile").top_text()

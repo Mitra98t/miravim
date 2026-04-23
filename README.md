@@ -85,9 +85,8 @@ lazy.nvim will bootstrap itself and install all plugins on the first launch.
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [snacks.nvim](https://github.com/folke/snacks.nvim)                 | All-in-one utility: dashboard, file explorer, fuzzy picker, zen mode, notifications, image preview, indent guides, buffer scroll, word highlighting |
 | [noice.nvim](https://github.com/folke/noice.nvim)                   | Replaces the default cmdline, messages panel, and LSP hover/signature UI with styled floating windows                                               |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)        | Statusline with kaomoji mode indicators (see below)                                                                                                 |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)        | Statusline with kaomoji mode indicators and LSP breadcrumbs in the filename section (`file › class › function`, truncated when space is tight)      |
 | [which-key.nvim](https://github.com/folke/which-key.nvim)           | Popup keybinding hints on `<leader>` and other prefixes                                                                                             |
-| [barbecue.nvim](https://github.com/utilyre/barbecue.nvim)           | Winbar breadcrumbs showing the LSP symbol path to the cursor                                                                                        |
 | [neominimap.nvim](https://github.com/Isrothy/neominimap.nvim)       | Code minimap shown in a side window, with per-window/tab/buffer controls                                                                            |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | File-type icons used throughout the UI                                                                                                              |
 

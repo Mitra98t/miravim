@@ -49,6 +49,10 @@ return {
         for _, key in ipairs(defaults) do
           pcall(vim.keymap.del, "n", key, { buffer = args.buf })
         end
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.server_capabilities.documentSymbolProvider then
+          require("nvim-navic").attach(client, args.buf)
+        end
       end,
     })
 
