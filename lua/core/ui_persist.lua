@@ -10,6 +10,7 @@ local defaults = {
   colorizer      = true,   -- colorizer.setup(*) lo abilita di default
   minimap        = false,  -- neominimap parte con auto_enable = false
   smooth_scroll  = true,
+  listchars      = false,
   colorscheme    = "ember-soft",
 }
 
@@ -50,6 +51,7 @@ vim.g.format_on_save_enabled      = M.state.format_on_save
 vim.g.colorizer_enabled           = M.state.colorizer
 vim.g.minimap_enabled             = M.state.minimap
 vim.g.smooth_scroll_enabled       = M.state.smooth_scroll
+vim.opt.list                      = M.state.listchars
 
 if M.state.spell then
   vim.opt.spell     = true

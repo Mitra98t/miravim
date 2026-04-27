@@ -57,3 +57,11 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+opt.listchars = {
+  space   = '·',
+  tab     = '→ ',
+  trail   = '•',
+  eol     = '↲',
+  nbsp    = '␣',
+}

@@ -346,8 +346,11 @@ Renders the current Markdown file to PDF using `pandoc` plus the first available
 | `<leader>uz`   | Zen mode                         |
 | `<leader>up`   | Toggle statusline path           |
 | `<leader>ub`   | Toggle statusline breadcrumbs    |
+| `<leader>ul`   | Toggle listchars (whitespace)    |
 | `<leader>use`  | Enable English spellcheck        |
 | `<leader>usi`  | Enable Italian spellcheck        |
+| `<leader>usd`  | Disable spellcheck               |
+| `<leader>uS`   | Toggle smooth scroll             |
 | `<leader>unm`  | Toggle minimap (global)          |
 | `<leader>uno`  | Enable minimap (global)          |
 | `<leader>unc`  | Disable minimap (global)         |

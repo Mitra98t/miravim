@@ -37,6 +37,12 @@ return {
           require("core.ui_persist").save("breadcrumbs", vim.g.statusline_show_breadcrumbs)
           vim.notify("Statusline breadcrumbs " .. (vim.g.statusline_show_breadcrumbs and "enabled" or "disabled"))
         end, desc = "Toggle statusline breadcrumbs" },
+      { "<leader>ul", function()
+          local enabled = not vim.opt.list:get()
+          vim.opt.list = enabled
+          require("core.ui_persist").save("listchars", enabled)
+          vim.notify("Listchars " .. (enabled and "enabled" or "disabled"))
+        end, desc = "Toggle listchars" },
       { "<leader>us",  group = "Speelcheck" },
       { "<leader>use", function()
           vim.opt.spell = true
@@ -52,6 +58,10 @@ return {
           p.save("spell", true)
           p.save("spelllang", "it_it")
         end, desc = "Speelcheck Italian" },
+      { "<leader>usd", function()
+          vim.opt.spell = false
+          require("core.ui_persist").save("spell", false)
+        end, desc = "Disable spellcheck" },
       {
         mode = { 'v' },
         { "<S-Up>",   ":m '<-2<CR>gv=gv", desc = "Move up" },
