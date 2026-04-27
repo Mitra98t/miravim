@@ -9,6 +9,7 @@ local defaults = {
   format_on_save = true,
   colorizer      = true,   -- colorizer.setup(*) lo abilita di default
   minimap        = false,  -- neominimap parte con auto_enable = false
+  smooth_scroll  = true,
   colorscheme    = "ember-soft",
 }
 
@@ -48,6 +49,7 @@ vim.g.statusline_show_path        = M.state.path
 vim.g.format_on_save_enabled      = M.state.format_on_save
 vim.g.colorizer_enabled           = M.state.colorizer
 vim.g.minimap_enabled             = M.state.minimap
+vim.g.smooth_scroll_enabled       = M.state.smooth_scroll
 
 if M.state.spell then
   vim.opt.spell     = true
@@ -66,6 +68,9 @@ vim.api.nvim_create_autocmd("User", {
     if M.state.minimap then
       vim.cmd("Neominimap on")
       vim.g.minimap_enabled = true
+    end
+    if not M.state.smooth_scroll then
+      require("snacks").scroll.disable()
     end
   end,
 })

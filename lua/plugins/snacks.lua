@@ -29,7 +29,7 @@ return {
       notify = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
-      scroll = { enabled = true },
+      scroll = { enabled = vim.g.smooth_scroll_enabled ~= false },
       -- terminal = { enabled = false },
       statuscolumn = { enabled = true },
       words = { enabled = true },
@@ -169,6 +169,21 @@ return {
           Snacks.zen()
         end,
         desc = "Zen Mode"
+      },
+      {
+        "<leader>uS",
+        function()
+          local enabled = not vim.g.smooth_scroll_enabled
+          vim.g.smooth_scroll_enabled = enabled
+          if enabled then
+            Snacks.scroll.enable()
+          else
+            Snacks.scroll.disable()
+          end
+          require("core.ui_persist").save("smooth_scroll", enabled)
+          vim.notify("Smooth scroll " .. (enabled and "enabled" or "disabled"))
+        end,
+        desc = "Toggle smooth scroll",
       },
 
       {
