@@ -11,6 +11,7 @@ return {
     ---@type Neominimap.UserConfig
     vim.g.neominimap = {
       auto_enable = false,
+      delay = 2000,
     }
   end,
   config = function()
