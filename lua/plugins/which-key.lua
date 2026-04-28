@@ -38,11 +38,13 @@ return {
           vim.notify("Statusline breadcrumbs " .. (vim.g.statusline_show_breadcrumbs and "enabled" or "disabled"))
         end, desc = "Toggle statusline breadcrumbs" },
       { "<leader>ul", function()
-          local enabled = not vim.opt.list:get()
-          vim.opt.list = enabled
-          require("core.ui_persist").save("listchars", enabled)
-          vim.notify("Listchars " .. (enabled and "enabled" or "disabled"))
-        end, desc = "Toggle listchars" },
+          local p = require("core.ui_persist")
+          local level = (p.get("listchars") + 1) % 4
+          p.apply_listchars(level)
+          p.save("listchars", level)
+          local names = { [0] = "off", [1] = "tabs", [2] = "spaces", [3] = "all" }
+          vim.notify("Listchars: " .. names[level])
+        end, desc = "Cycle listchars level" },
       { "<leader>us",  group = "Speelcheck" },
       { "<leader>use", function()
           vim.opt.spell = true

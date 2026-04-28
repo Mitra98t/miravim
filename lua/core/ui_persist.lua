@@ -10,9 +10,27 @@ local defaults = {
   colorizer      = true,   -- colorizer.setup(*) lo abilita di default
   minimap        = false,  -- neominimap parte con auto_enable = false
   smooth_scroll  = true,
-  listchars      = false,
+  listchars      = 0,      -- 0=off 1=tabs 2=spaces 3=all
   colorscheme    = "ember-soft",
 }
+
+-- Livello 0: spento | 1: tab+trail | 2: +space+nbsp | 3: +eol
+local listchars_levels = {
+  [0] = nil,
+  [1] = { tab = '→ ', trail = '·' },
+  [2] = { tab = '→ ', space = '·', trail = '•', nbsp = '␣' },
+  [3] = { tab = '→ ', space = '·', trail = '•', eol = '↲', nbsp = '␣' },
+}
+
+function M.apply_listchars(level)
+  local chars = listchars_levels[level or 0]
+  if chars then
+    vim.opt.listchars = chars
+    vim.opt.list = true
+  else
+    vim.opt.list = false
+  end
+end
 
 local function write_state(state)
   local ok, encoded = pcall(vim.fn.json_encode, state)
@@ -30,6 +48,12 @@ local existing = read_state()
 local is_first_launch = existing == nil
 
 M.state = vim.tbl_deep_extend("force", defaults, existing or {})
+
+-- Migrazione: vecchio stato booleano → intero
+if type(M.state.listchars) == "boolean" then
+  M.state.listchars = M.state.listchars and 3 or 0
+  write_state(M.state)
+end
 
 -- Primo avvio: scrivi subito i default su disco
 if is_first_launch then
@@ -51,7 +75,7 @@ vim.g.format_on_save_enabled      = M.state.format_on_save
 vim.g.colorizer_enabled           = M.state.colorizer
 vim.g.minimap_enabled             = M.state.minimap
 vim.g.smooth_scroll_enabled       = M.state.smooth_scroll
-vim.opt.list                      = M.state.listchars
+M.apply_listchars(M.state.listchars)
 
 if M.state.spell then
   vim.opt.spell     = true
