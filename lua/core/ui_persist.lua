@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("User", {
       vim.g.colorizer_enabled = false
     end
     if M.state.minimap then
-      vim.cmd("Neominimap on")
+      vim.cmd("Neominimap Enable")
       vim.g.minimap_enabled = true
     end
     if not M.state.smooth_scroll then
