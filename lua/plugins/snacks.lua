@@ -216,18 +216,14 @@ return {
       {
         "<leader>fw",
         function()
-          Snacks.picker.grep({
-            layout = { preset = "bottom", }
-          })
+          Snacks.picker.grep()
         end,
         desc = "Find Word"
       },
       {
         "<leader>fW",
         function()
-          Snacks.picker.grep_word({
-            layout = { preset = "bottom", }
-          })
+          Snacks.picker.grep_word()
         end,
         desc = "Find Word under cursor"
       },
