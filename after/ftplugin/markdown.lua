@@ -135,3 +135,4 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 vim.keymap.set("n", "<leader>mmr", toggle_render, { buffer = 0, desc = "Toggle auto PDF rendering on save" })
 vim.keymap.set("n", "<leader>mmp", build_pdf, { buffer = 0, desc = "Render PDF now" })
+vim.keymap.set("n", "<leader>mmt", "<cmd>Mtoc<cr>", { buffer = 0, desc = "Add table of contents" })
