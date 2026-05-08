@@ -5,6 +5,12 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   cmd = "CodeDiff",
   config = function()
+    require("codediff").setup({
+      diff = {
+        conflict_result_position = "center",
+      },
+    })
+
     local wk = require 'which-key'
     wk.add({
       { "<leader>g",  group = "Git" },
