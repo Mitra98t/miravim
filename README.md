@@ -1,6 +1,6 @@
 # nvim config
 
-A personal Neovim configuration built around [lazy.nvim](https://github.com/folke/lazy.nvim), targeting Rust, Godot, web, Python, and LaTeX development.
+A personal Neovim configuration built around [lazy.nvim](https://github.com/folke/lazy.nvim), targeting Rust, Godot, web, Python, and LaTeX development. =)
 
 ## Requirements
 
