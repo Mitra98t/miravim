@@ -7,10 +7,10 @@ local defaults = {
   spell          = false,
   spelllang      = "en_us",
   format_on_save = true,
-  colorizer      = true,   -- colorizer.setup(*) lo abilita di default
-  minimap        = false,  -- neominimap parte con auto_enable = false
+  colorizer      = true,  -- colorizer.setup(*) lo abilita di default
+  minimap        = false, -- neominimap parte con auto_enable = false
   smooth_scroll  = true,
-  listchars      = 0,      -- 0=off 1=tabs 2=spaces 3=all
+  listchars      = 0,     -- 0=off 1=tabs 2=spaces 3=all
   colorscheme    = "ember-soft",
 }
 

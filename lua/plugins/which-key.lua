@@ -27,43 +27,67 @@ return {
       {
         "<leader>u", group = "UI"
       },
-      { "<leader>up", function()
+      {
+        "<leader>up",
+        function()
           vim.g.statusline_show_path = not vim.g.statusline_show_path
           require("core.ui_persist").save("path", vim.g.statusline_show_path)
           vim.notify("Statusline path " .. (vim.g.statusline_show_path and "enabled" or "disabled"))
-        end, desc = "Toggle statusline path" },
-      { "<leader>ub", function()
+        end,
+        desc = "Toggle statusline path"
+      },
+      {
+        "<leader>ub",
+        function()
           vim.g.statusline_show_breadcrumbs = not vim.g.statusline_show_breadcrumbs
           require("core.ui_persist").save("breadcrumbs", vim.g.statusline_show_breadcrumbs)
           vim.notify("Statusline breadcrumbs " .. (vim.g.statusline_show_breadcrumbs and "enabled" or "disabled"))
-        end, desc = "Toggle statusline breadcrumbs" },
-      { "<leader>ul", function()
+        end,
+        desc = "Toggle statusline breadcrumbs"
+      },
+      {
+        "<leader>ul",
+        function()
           local p = require("core.ui_persist")
           local level = (p.get("listchars") + 1) % 4
           p.apply_listchars(level)
           p.save("listchars", level)
           local names = { [0] = "off", [1] = "tabs", [2] = "spaces", [3] = "all" }
           vim.notify("Listchars: " .. names[level])
-        end, desc = "Cycle listchars level" },
-      { "<leader>us",  group = "Speelcheck" },
-      { "<leader>use", function()
+        end,
+        desc = "Cycle listchars level"
+      },
+      { "<leader>us", group = "Speelcheck" },
+      {
+        "<leader>use",
+        function()
           vim.opt.spell = true
           vim.opt.spelllang = "en_us"
           local p = require("core.ui_persist")
           p.save("spell", true)
           p.save("spelllang", "en_us")
-        end, desc = "Speelcheck English" },
-      { "<leader>usi", function()
+        end,
+        desc = "Speelcheck English"
+      },
+      {
+        "<leader>usi",
+        function()
           vim.opt.spell = true
           vim.opt.spelllang = "it_it"
           local p = require("core.ui_persist")
           p.save("spell", true)
           p.save("spelllang", "it_it")
-        end, desc = "Speelcheck Italian" },
-      { "<leader>usd", function()
+        end,
+        desc = "Speelcheck Italian"
+      },
+      {
+        "<leader>usd",
+        function()
           vim.opt.spell = false
           require("core.ui_persist").save("spell", false)
-        end, desc = "Disable spellcheck" },
+        end,
+        desc = "Disable spellcheck"
+      },
       {
         mode = { 'v' },
         { "<S-Up>",   ":m '<-2<CR>gv=gv", desc = "Move up" },
@@ -74,10 +98,10 @@ return {
         { "<C-s>", write_file,      desc = "Write File" },
         { "<C-q>", "<cmd>qall<cr>", desc = "Exit Nvim" }
       },
-      { "<leader>a", group = "AI/Claude Code" },
-      { "<leader>c", group = "Code" },
+      { "<leader>a",  group = "AI/Claude Code" },
+      { "<leader>c",  group = "Code" },
       {
-        { "<leader>cr", vim.lsp.buf.rename,       desc = "Smart Rename" },
+        { "<leader>cr", vim.lsp.buf.rename,      desc = "Smart Rename" },
         { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" },
       }
     })

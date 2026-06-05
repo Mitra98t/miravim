@@ -1,7 +1,7 @@
 return {
   {
     "ember-theme/nvim",
-    name ="ember"
+    name = "ember"
   },
   "xero/miasma.nvim",
   "nvim-tree/nvim-web-devicons",

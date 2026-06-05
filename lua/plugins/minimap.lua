@@ -21,11 +21,15 @@ return {
       { "<leader>un",   group = "Minimap" },
 
       -- Global Minimap Controls
-      { "<leader>unm", function()
+      {
+        "<leader>unm",
+        function()
           vim.cmd("Neominimap Toggle")
           vim.g.minimap_enabled = not vim.g.minimap_enabled
           require("core.ui_persist").save("minimap", vim.g.minimap_enabled)
-        end, desc = "Toggle global minimap" },
+        end,
+        desc = "Toggle global minimap"
+      },
       { "<leader>unr",  "<cmd>Neominimap Refresh<cr>",     desc = "Refresh global minimap" },
 
       -- Window-Specific Minimap Controls

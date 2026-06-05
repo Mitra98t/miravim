@@ -27,8 +27,8 @@ local function pick_pdf_engine()
 end
 
 local has_skim = vim.fn.has("macunix") == 1
-  and vim.fn.isdirectory("/Applications/Skim.app") == 1
-  and vim.fn.executable("osascript") == 1
+    and vim.fn.isdirectory("/Applications/Skim.app") == 1
+    and vim.fn.executable("osascript") == 1
 
 local function skim_refresh(pdf)
   local escaped_pdf = pdf:gsub("\\", "\\\\"):gsub('"', '\\"')
