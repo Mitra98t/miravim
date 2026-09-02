@@ -2,16 +2,17 @@ local M = {}
 local state_file = vim.fn.stdpath("data") .. "/nvim_ui_state.json"
 
 local defaults = {
-  breadcrumbs    = true,
-  path           = true,
-  spell          = false,
-  spelllang      = "en_us",
-  format_on_save = true,
-  colorizer      = true,  -- colorizer.setup(*) lo abilita di default
-  minimap        = false, -- neominimap parte con auto_enable = false
-  smooth_scroll  = true,
-  listchars      = 0,     -- 0=off 1=tabs 2=spaces 3=all
-  colorscheme    = "ember-soft",
+  breadcrumbs        = true,
+  path               = true,
+  spell              = false,
+  spelllang          = "en_us",
+  format_on_save     = true,
+  colorizer          = true,  -- colorizer.setup(*) lo abilita di default
+  minimap            = false, -- neominimap parte con auto_enable = false
+  smooth_scroll      = true,
+  listchars          = 0,     -- 0=off 1=tabs 2=spaces 3=all
+  colorscheme        = "ember-soft",
+  image_max_width    = 15,   -- max_width colonne per preview immagini inline
 }
 
 -- Livello 0: spento | 1: tab+trail | 2: +space+nbsp | 3: +eol

@@ -57,6 +57,29 @@ return {
         end,
         desc = "Cycle listchars level"
       },
+      {
+        "<leader>ui",
+        function()
+          local p = require("core.ui_persist")
+          local current = p.get("image_max_width") or 15
+          vim.ui.input({
+            prompt = "Image max width — colonne (attuale: " .. current .. "): ",
+            default = tostring(current),
+          }, function(input)
+            if not input then return end
+            local width = tonumber(input)
+            if not width or width < 1 then
+              vim.notify("Valore non valido", vim.log.levels.ERROR, { title = "Image Preview" })
+              return
+            end
+            p.save("image_max_width", width)
+            local ok, snacks_image = pcall(require, "snacks.image")
+            if ok then snacks_image.config.doc.max_width = width end
+            vim.notify("Image max width: " .. width .. " colonne", vim.log.levels.INFO, { title = "Image Preview" })
+          end)
+        end,
+        desc = "Image max width",
+      },
       { "<leader>us", group = "Speelcheck" },
       {
         "<leader>use",

@@ -13,7 +13,12 @@ return {
       bufdelete = { enabled = true },
       debug = { enabled = true },
       explorer = { enabled = true },
-      image = { enabled = true },
+      image = {
+        enabled = true,
+        doc = {
+          max_width = require("core.ui_persist").get("image_max_width") or 15,
+        },
+      },
       indent = { enabled = true },
       picker = {
         enabled = true,
