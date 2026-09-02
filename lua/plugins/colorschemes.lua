@@ -17,4 +17,5 @@ return {
   "lunarvim/darkplus.nvim",
   "eldritch-theme/eldritch.nvim",
   'AlexvZyl/nordic.nvim',
+  "harshrajsachan/omni.nvim",
 }
