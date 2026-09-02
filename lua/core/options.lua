@@ -1,5 +1,7 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+vim.filetype.add({ extension = { ino = "cpp" } })
+
 -- Connect to godot server if in godot project
 local project_file = vim.fn.getcwd() .. "/project.godot"
 if vim.fn.filereadable(project_file) == 1 then
@@ -58,10 +60,3 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
-opt.listchars = {
-  space = '·',
-  tab   = '→ ',
-  trail = '•',
-  eol   = '↲',
-  nbsp  = '␣',
-}
