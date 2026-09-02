@@ -1,57 +1,77 @@
 return {
-  "esmuellert/codediff.nvim",
-  dependencies = { "MunifTanjim/nui.nvim" },
-  lazy = false,
-  event = { "BufReadPre", "BufNewFile" },
-  cmd = "CodeDiff",
-  config = function()
-    require("codediff").setup({
-      diff = {
-        conflict_result_position = "center",
-      },
-    })
+	"sindrets/diffview.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	lazy = false,
+	config = function()
+		local actions = require("diffview.actions")
 
-    local wk = require 'which-key'
-    wk.add({
-      { "<leader>g",  group = "Git" },
-      {
-        mode = { "v" }, -- NORMAL and VISUAL mode
-        {
-          "<leader>gh",
-          ":CodeDiff history<CR>",
-          desc = "View selection history"
+		require("diffview").setup({
+      file_panel = {
+        listing_style = "list",
+        win_config = {
+          width = 40,
         },
       },
-      {
-        mode = { "n" }, -- NORMAL and VISUAL mode
-        { "<leader>gh", "<cmd>CodeDiff history %<cr>", desc = "View file history" },
-      },
-      { "<leader>gf", "<cmd>CodeDiff file HEAD --inline<cr>", desc = "Diff file vs HEAD" },
-      { "<leader>gF", "<cmd>CodeDiff HEAD<cr>",               desc = "Diff repo vs HEAD" },
-      { "<leader>gd", "<cmd>CodeDiff<cr>",                    desc = "Git status explorer" },
-      {
-        "<leader>gp",
-        function()
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes(":CodeDiff ...<Left><Left><Left>", true, true, true),
-            "n",
-            false
-          )
-        end,
-        desc = "PR diff (merge-base, inserisci branch)"
-      },
-      { "<leader>gH", "<cmd>CodeDiff history<cr>", desc = "Repo commit history" },
-      {
-        "<leader>gD",
-        function()
-          vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes(":CodeDiff ", true, true, true),
-            "n",
-            false
-          )
-        end,
-        desc = "CodeDiff (custom revision)"
-      },
-    })
-  end,
+      enhanced_diff_hl = true,
+			keymaps = {
+				disable_defaults = false,
+				view = {
+					{ "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+				},
+				file_panel = {
+					{ "n", "q",     "<cmd>DiffviewClose<cr>",  { desc = "Close Diffview" } },
+				},
+				file_history_panel = {
+					{ "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+				},
+			},
+		})
+
+		local wk = require("which-key")
+		wk.add({
+			{ "<leader>g", group = "Git" },
+			{
+				mode = { "v" },
+				{ "<leader>gh", ":'<,'>DiffviewFileHistory<cr>", desc = "View selection history" },
+			},
+			{
+				mode = { "n" },
+				{
+					"<leader>gh",
+					function() vim.cmd("DiffviewFileHistory " .. vim.fn.expand("%")) end,
+					desc = "View file history",
+				},
+			},
+			{
+				"<leader>gf",
+				function() vim.cmd("DiffviewOpen HEAD -- " .. vim.fn.expand("%")) end,
+				desc = "Diff file vs HEAD",
+			},
+			{ "<leader>gF", "<cmd>DiffviewOpen HEAD<cr>",        desc = "Diff repo vs HEAD" },
+			{ "<leader>gd", "<cmd>DiffviewOpen<cr>",              desc = "Git status explorer" },
+			{
+				"<leader>gp",
+				function()
+					vim.api.nvim_feedkeys(
+						vim.api.nvim_replace_termcodes(":DiffviewOpen ...<Left><Left><Left>", true, true, true),
+						"n",
+						false
+					)
+				end,
+				desc = "PR diff (merge-base, insert branch)",
+			},
+			{ "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Repo commit history" },
+			{
+				"<leader>gD",
+				function()
+					vim.api.nvim_feedkeys(
+						vim.api.nvim_replace_termcodes(":DiffviewOpen ", true, true, true),
+						"n",
+						false
+					)
+				end,
+				desc = "DiffviewOpen (custom revision)",
+			},
+		})
+	end,
 }
